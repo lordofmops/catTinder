@@ -1,4 +1,3 @@
-import 'package:cat_tinder/src/model/cat.dart';
 import 'package:cat_tinder/src/service/cat_service.dart';
 import 'package:cat_tinder/src/view/cat_view.dart';
 import 'package:flutter/foundation.dart';

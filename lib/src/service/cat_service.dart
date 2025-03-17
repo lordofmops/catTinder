@@ -9,18 +9,27 @@ class CatService {
     try {
       final response = await http.get(
         Uri.parse('https://api.thecatapi.com/v1/images/search?has_breeds=1'),
-        headers: {'x-api-key': 'live_o8038oqDil8T8qkhapTShngvUDx2B8gjkmIIAXFC0m7Js2rsqL6y8GddBEH6vQOf'},
+        headers: {
+          'x-api-key':
+              'live_o8038oqDil8T8qkhapTShngvUDx2B8gjkmIIAXFC0m7Js2rsqL6y8GddBEH6vQOf',
+        },
       );
-      debugPrint("[info] [CatService/fetchRandomCat] API response code: ${response.statusCode}");
+      debugPrint(
+        "[info] [CatService/fetchRandomCat] API response code: ${response.statusCode}",
+      );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body)[0];
 
-        debugPrint("[info] [CatService/fetchRandomCat] Cat received, breed: ${data['breeds'][0]['name']}");
+        debugPrint(
+          "[info] [CatService/fetchRandomCat] Cat received, breed: ${data['breeds'][0]['name']}",
+        );
         final Cat cat = Cat.fromJson(data);
         return cat;
       } else {
-        debugPrint("[error] [CatService/fetchRandomCat] API response code: ${response.statusCode}");
+        debugPrint(
+          "[error] [CatService/fetchRandomCat] API response code: ${response.statusCode}",
+        );
         throw Exception('Data loading error: ${response.statusCode}');
       }
     } catch (e) {

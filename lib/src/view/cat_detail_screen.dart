@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class CatDetailScreen extends StatelessWidget {
   final Cat cat;
 
-  CatDetailScreen({required this.cat});
+  const CatDetailScreen({super.key, required this.cat});
 
   Future<void> _launchURL(String url) async {
     Uri uri = Uri.parse(url);
@@ -64,7 +64,7 @@ class CatDetailScreen extends StatelessWidget {
                         _buildInfoBlock('Origin', cat.origin),
                       ],
                     ),
-                  ]
+                  ],
                 ),
               ),
               SizedBox(height: 24),
@@ -72,13 +72,25 @@ class CatDetailScreen extends StatelessWidget {
               SizedBox(height: 24),
               _buildDetailBlock('Temperament', cat.temperament.toLowerCase()),
               SizedBox(height: 24),
-              _buildRatingsChart("Social and Friendly Traits", cat.socialAttributes),
+              _buildRatingsChart(
+                "Social and Friendly Traits",
+                cat.socialAttributes,
+              ),
               SizedBox(height: 24),
-              _buildRatingsChart("Activity and Care Needs", cat.activityAndCareAttributes),
+              _buildRatingsChart(
+                "Activity and Care Needs",
+                cat.activityAndCareAttributes,
+              ),
               SizedBox(height: 24),
-              _buildCharacteristicsChart("Physical Traits", cat.physicalAttributes),
+              _buildCharacteristicsChart(
+                "Physical Traits",
+                cat.physicalAttributes,
+              ),
               SizedBox(height: 24),
-              _buildCharacteristicsChart("Rarity and Origin", cat.rarityAttributes),
+              _buildCharacteristicsChart(
+                "Rarity and Origin",
+                cat.rarityAttributes,
+              ),
               SizedBox(height: 24),
               Text(
                 'Links',
@@ -96,7 +108,7 @@ class CatDetailScreen extends StatelessWidget {
               _buildLinkBlock('CFA', cat.cfaUrl),
             ],
           ),
-        )
+        ),
       ),
     );
   }
@@ -164,63 +176,64 @@ class CatDetailScreen extends StatelessWidget {
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'Source Sans Pro',
-            color: Colors.black
-          )
+            color: Colors.black,
+          ),
         ),
         SizedBox(height: 8),
         Column(
-          children: ratings.entries.map((entry) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: Text(
-                      entry.key,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Source Sans Pro',
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black
-                      )
-                    )
-                  ),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5)
-                          )
-                        ),
-                        Container(
-                          height: 10,
-                          width: (entry.value / 5) * 300,
-                          decoration: BoxDecoration(
+          children:
+              ratings.entries.map((entry) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          entry.key,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Source Sans Pro',
+                            fontWeight: FontWeight.normal,
                             color: Colors.black,
-                            borderRadius: BorderRadius.circular(5)
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 10,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            Container(
+                              height: 10,
+                              width: (entry.value / 5) * 300,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        '${entry.value}/5',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Source Sans Pro',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 8),
-                  Text(
-                    '${entry.value}/5',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Source Sans Pro',
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    )
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
+                );
+              }).toList(),
         ),
       ],
     );
@@ -231,29 +244,34 @@ class CatDetailScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-            title,
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Source Sans Pro',
-                color: Colors.black
-            )
+          title,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Source Sans Pro',
+            color: Colors.black,
+          ),
         ),
         SizedBox(height: 8),
         Column(
-          children: ratings.entries.map((entry) {
-            return _buildCharacteristicDiagram(
-              entry.key.split("/")[0],
-              entry.key.split("/")[1],
-              entry.value
-            );
-          }).toList(),
+          children:
+              ratings.entries.map((entry) {
+                return _buildCharacteristicDiagram(
+                  entry.key.split("/")[0],
+                  entry.key.split("/")[1],
+                  entry.value,
+                );
+              }).toList(),
         ),
       ],
     );
   }
 
-  Widget _buildCharacteristicDiagram(String leftTitle, String rightTitle, int? value) {
+  Widget _buildCharacteristicDiagram(
+    String leftTitle,
+    String rightTitle,
+    int? value,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: SizedBox(
@@ -320,15 +338,15 @@ class CatDetailScreen extends StatelessWidget {
     return url == null
         ? SizedBox.shrink()
         : TextButton(
-      onPressed: () => _launchURL(url),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Colors.blue,
-          fontSize: 16,
-          fontFamily: 'Source Sans Pro',
-        ),
-      ),
-    );
+          onPressed: () => _launchURL(url),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 16,
+              fontFamily: 'Source Sans Pro',
+            ),
+          ),
+        );
   }
 }

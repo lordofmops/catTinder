@@ -30,7 +30,7 @@ class Cat {
     required this.vetstreetUrl,
     required this.vcahospitalsUrl,
     required this.wikiUrl,
-    required this.cfaUrl
+    required this.cfaUrl,
   });
 
   factory Cat.fromJson(Map<String, dynamic> json) {

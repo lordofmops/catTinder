@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cat_tinder/src/presenter/cat_presenter.dart';
 import 'package:cat_tinder/src/view/cat_view.dart';
 
 void main() {
