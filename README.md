@@ -1,16 +1,43 @@
 # cat_tinder
 
-A new Flutter project.
+## Функционал приложения
 
-## Getting Started
+### Главный экран
+- Отображается случайное изображение котика и название его породы.
+- Можно свайпать изображение котика влево (дизлайк) или вправо (лайк).
+- Есть две кнопки: лайк и дизлайк.
+- Лайк, дизлайк или свайп меняют котика на нового.
+- Если котика лайкнули, увеличивается счетчик лайков.
+- Нажатие на изображение открывает экран с детальной информацией.
 
-This project is a starting point for a Flutter application.
+### Экран детального описания
+- Отображается полное изображение котика.
+- Выводится вся информация о породе.
+- Характеристики породы представлены в наглядных диаграммах.
+- Есть кликабельные ссылки на внешние источники (Vetstreet, VCAHospitals).
 
-A few resources to get you started if this is your first Flutter project:
+## Интерфейс приложения
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://github.com/user-attachments/assets/272ed3a7-0989-4687-aa82-9cb40ae2247f
+
+
+
+## Технические характеристики
+
+### Работа с API
+- Используется The Cat API (https://thecatapi.com).
+- Данные загружаются через HTTP-клиент (http).
+- Загружается случайное изображение котика, если указана порода.
+
+### Основные требования к коду
+- Используется Navigator для перехода на детальный экран.
+- Картинки загружаются через Image или CachedNetworkImage.
+- Используются Row и Column.
+- Присутствует хотя бы один StatefulWidget.
+- Кнопка лайка/дизлайка реализована как StatelessWidget.
+
+### Качество кода
+- Код отформатирован с помощью dart format.
+- Используется flutter_lints в pubspec.yaml и analysis_options.yaml.
+- Команда flutter analyze выполняется без ошибок.
