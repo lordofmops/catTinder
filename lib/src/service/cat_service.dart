@@ -16,13 +16,8 @@ class CatService {
         final data = jsonDecode(response.body)[0];
 
         print("Котик получен, изображение: ${data['url']}, порода: ${data['breeds'][0]['name']}");
-        return Cat(
-          imageUrl: data['url'],
-          breed: data['breeds'][0]['name'],
-          weight: data['breeds'][0]['weight']['metric'],
-          lifeSpan: data['breeds'][0]['life_span'],
-          temperament: data['breeds'][0]['temperament']
-        );
+        final Cat cat = Cat.fromJson(data);
+        return cat;
       } else {
         throw Exception('Ошибка загрузки данных: ${response.statusCode}');
       }
