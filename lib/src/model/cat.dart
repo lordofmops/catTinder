@@ -3,7 +3,9 @@ class Cat {
   final String breed;
   final String weight;
   final String lifeSpan;
+  final String origin;
   final String temperament;
+  final String description;
   final Map<String, int> ratings;
   final String? vetstreetUrl;
   final String? vcahospitalsUrl;
@@ -15,7 +17,9 @@ class Cat {
     required this.breed,
     required this.weight,
     required this.lifeSpan,
+    required this.origin,
     required this.temperament,
+    required this.description,
     required this.ratings,
     required this.vetstreetUrl,
     required this.vcahospitalsUrl,
@@ -29,7 +33,9 @@ class Cat {
       breed: json['breeds'][0]['name'],
       weight: json['breeds'][0]['weight']['metric'],
       lifeSpan: json['breeds'][0]['life_span'],
+      origin: json['breeds'][0]['country_code'],
       temperament: json['breeds'][0]['temperament'],
+      description: json['breeds'][0]['description'],
       vetstreetUrl: json['breeds'][0]['vetstreet_url'],
       vcahospitalsUrl: json['breeds'][0]['vcahospitals_url'],
       wikiUrl: json['breeds'][0]['wikipedia_url'],
@@ -47,6 +53,14 @@ class Cat {
         "Social needs": json['breeds'][0]['social_needs'],
         "Stranger friendly": json['breeds'][0]['stranger_friendly'],
         "Vocalisation": json['breeds'][0]['vocalisation'],
+        "Experimental": json['breeds'][0]['experimental'],
+        "Hairless": json['breeds'][0]['hairless'],
+        "Natural": json['breeds'][0]['natural'],
+        "Rare": json['breeds'][0]['rare'],
+        "Rex": json['breeds'][0]['rex'],
+        "Suppressed tail": json['breeds'][0]['suppressed_tail'],
+        "Short legs": json['breeds'][0]['short_legs'],
+        "Hypoallergenic": json['breeds'][0]['hypoallergenic'],
       },
     );
   }
