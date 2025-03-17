@@ -29,12 +29,12 @@ class _CatScreenState extends State<CatScreen> implements CatView {
 
   @override
   void updateCat(Cat cat) {
-    print("Обновляем UI: ${cat.imageUrl}, ${cat.breed}");
     setState(() {
       currentCat = cat;
       _isSwiping = false;
       _swipeOffset = 0;
     });
+    debugPrint("[info] [_CatScreenState/updateCat] Updated main screen");
   }
 
   void onLike() {
@@ -130,7 +130,7 @@ class _CatScreenState extends State<CatScreen> implements CatView {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

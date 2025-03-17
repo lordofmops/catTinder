@@ -12,7 +12,7 @@ class CatDetailScreen extends StatelessWidget {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("Could not launch $url");
+      debugPrint("[error] [CatDetailScreen/_launchURL] Could not launch $url");
       throw 'Could not launch $url';
     }
   }
@@ -153,7 +153,7 @@ class CatDetailScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            fontFamily: 'SourceSansPro',
+            fontFamily: 'Source Sans Pro',
             color: Colors.black
           )
         ),
@@ -170,7 +170,7 @@ class CatDetailScreen extends StatelessWidget {
                       entry.key,
                       style: TextStyle(
                         fontSize: 14,
-                        fontFamily: 'SourceSansPro',
+                        fontFamily: 'Source Sans Pro',
                         fontWeight: FontWeight.normal,
                         color: Colors.black
                       )
@@ -202,7 +202,7 @@ class CatDetailScreen extends StatelessWidget {
                     '${entry.value}/5',
                     style: TextStyle(
                       fontSize: 14,
-                      fontFamily: 'SourceSansPro',
+                      fontFamily: 'Source Sans Pro',
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     )

@@ -1,6 +1,7 @@
 import 'package:cat_tinder/src/model/cat.dart';
 import 'package:cat_tinder/src/service/cat_service.dart';
 import 'package:cat_tinder/src/view/cat_view.dart';
+import 'package:flutter/foundation.dart';
 
 class CatPresenter {
   final CatView view;
@@ -10,12 +11,12 @@ class CatPresenter {
 
   Future<void> loadRandomCat() async {
     try {
-      print("Загружаем кота...");
+      debugPrint("[info] [CatPresenter/loadRandomCat] Loading cat");
       final cat = await service.fetchRandomCat();
-      print("Кот загружен: ${cat.breed}");
+      debugPrint("[info] [CatPresenter/loadRandomCat] Cat loaded");
       view.updateCat(cat);
     } catch (e) {
-      print("Ошибка загрузки кота: $e");
+      debugPrint("[error] [CatPresenter/loadRandomCat] Loading cat error: $e");
     }
   }
 }
