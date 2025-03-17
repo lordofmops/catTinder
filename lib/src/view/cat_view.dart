@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cat_tinder/src/model/cat.dart';
 import 'package:cat_tinder/src/presenter/cat_presenter.dart';
-import 'package:cat_tinder/src/widgets/like_dislike_buttons.dart';
 import 'cat_detail_screen.dart';
 
 abstract class CatView {
@@ -44,7 +43,6 @@ class _CatScreenState extends State<CatScreen> implements CatView {
       likes++;
       _isSwiping = true;
     });
-    print("Пользователь лайкнул котика");
     presenter.loadRandomCat();
   }
 
@@ -53,14 +51,13 @@ class _CatScreenState extends State<CatScreen> implements CatView {
     setState(() {
       _isSwiping = true;
     });
-    print("Пользователь дизлайкнул котика :(");
     presenter.loadRandomCat();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Кототиндер ($likes ❤️)')),
+      backgroundColor: Colors.white,
       body: Center(
         child: currentCat == null
             ? CircularProgressIndicator()
@@ -89,10 +86,21 @@ class _CatScreenState extends State<CatScreen> implements CatView {
                 _swipeOffset = 0;
               });
             },
+
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Text(
+                  "You liked $likes ${likes == 1 ? 'cat' : 'cats'} ❤️",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Source Sans Pro',
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -103,11 +111,11 @@ class _CatScreenState extends State<CatScreen> implements CatView {
                     );
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(25),
                     child: Image.network(
                       currentCat!.imageUrl,
                       height: 300,
-                      width: double.infinity,
+                      width: 300,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -116,13 +124,53 @@ class _CatScreenState extends State<CatScreen> implements CatView {
                 Text(
                   currentCat!.breed,
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    fontFamily: 'Source Sans Pro',
+                    color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 20),
-                LikeDislikeButtons(onLike: onLike, onDislike: onDislike),
+                SizedBox(height: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: onDislike,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 100,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: onLike,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 100,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          Icons.favorite,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -131,4 +179,5 @@ class _CatScreenState extends State<CatScreen> implements CatView {
     );
   }
 }
+
 
