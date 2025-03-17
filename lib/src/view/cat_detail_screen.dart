@@ -72,7 +72,13 @@ class CatDetailScreen extends StatelessWidget {
               SizedBox(height: 24),
               _buildDetailBlock('Temperament', cat.temperament.toLowerCase()),
               SizedBox(height: 24),
-              _buildRatingsChart(cat.ratings),
+              _buildRatingsChart("Social and Friendly Traits", cat.socialAttributes),
+              SizedBox(height: 24),
+              _buildRatingsChart("Activity and Care Needs", cat.activityAndCareAttributes),
+              SizedBox(height: 24),
+              _buildCharacteristicsChart("Physical Traits", cat.physicalAttributes),
+              SizedBox(height: 24),
+              _buildCharacteristicsChart("Rarity and Origin", cat.rarityAttributes),
               SizedBox(height: 24),
               Text(
                 'Links',
@@ -148,12 +154,12 @@ class CatDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingsChart(Map<String, int> ratings) {
+  Widget _buildRatingsChart(String title, Map<String, int> ratings) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Ratings',
+          title,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -220,10 +226,100 @@ class CatDetailScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildCharacteristicsChart(String title, Map<String, int> ratings) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+            title,
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Source Sans Pro',
+                color: Colors.black
+            )
+        ),
+        SizedBox(height: 8),
+        Column(
+          children: ratings.entries.map((entry) {
+            return _buildCharacteristicDiagram(
+              entry.key.split("/")[0],
+              entry.key.split("/")[1],
+              entry.value
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCharacteristicDiagram(String leftTitle, String rightTitle, int? value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: SizedBox(
+        width: 360,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 100,
+              child: Text(
+                leftTitle,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'Source Sans Pro',
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                Container(
+                  height: 10,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: value == 1 ? Colors.grey[300] : Colors.black,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                Container(
+                  height: 10,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    color: value == 1 ? Colors.black : Colors.grey[300],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      bottomLeft: Radius.circular(5),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 100,
+              child: Text(
+                rightTitle,
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'Source Sans Pro',
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildLinkBlock(String title, String? url) {
     return url == null
-    ? SizedBox.shrink()
-    : TextButton(
+        ? SizedBox.shrink()
+        : TextButton(
       onPressed: () => _launchURL(url),
       child: Text(
         title,

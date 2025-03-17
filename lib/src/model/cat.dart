@@ -6,7 +6,10 @@ class Cat {
   final String origin;
   final String temperament;
   final String description;
-  final Map<String, int> ratings;
+  final Map<String, int> socialAttributes;
+  final Map<String, int> activityAndCareAttributes;
+  final Map<String, int> physicalAttributes;
+  final Map<String, int> rarityAttributes;
   final String? vetstreetUrl;
   final String? vcahospitalsUrl;
   final String? wikiUrl;
@@ -20,7 +23,10 @@ class Cat {
     required this.origin,
     required this.temperament,
     required this.description,
-    required this.ratings,
+    required this.socialAttributes,
+    required this.activityAndCareAttributes,
+    required this.physicalAttributes,
+    required this.rarityAttributes,
     required this.vetstreetUrl,
     required this.vcahospitalsUrl,
     required this.wikiUrl,
@@ -40,27 +46,33 @@ class Cat {
       vcahospitalsUrl: json['breeds'][0]['vcahospitals_url'],
       wikiUrl: json['breeds'][0]['wikipedia_url'],
       cfaUrl: json['breeds'][0]['cfa_url'],
-      ratings: {
-        "Adaptability": json['breeds'][0]['adaptability'],
+      socialAttributes: {
         "Affection level": json['breeds'][0]['affection_level'],
         "Child friendly": json['breeds'][0]['child_friendly'],
         "Dog friendly": json['breeds'][0]['dog_friendly'],
-        "Energy level": json['breeds'][0]['energy_level'],
-        "Grooming": json['breeds'][0]['grooming'],
-        "Health issues": json['breeds'][0]['health_issues'],
-        "Intelligence": json['breeds'][0]['intelligence'],
-        "Shedding level": json['breeds'][0]['shedding_level'],
-        "Social needs": json['breeds'][0]['social_needs'],
         "Stranger friendly": json['breeds'][0]['stranger_friendly'],
+        "Social needs": json['breeds'][0]['social_needs'],
         "Vocalisation": json['breeds'][0]['vocalisation'],
-        "Experimental": json['breeds'][0]['experimental'],
-        "Hairless": json['breeds'][0]['hairless'],
-        "Natural": json['breeds'][0]['natural'],
-        "Rare": json['breeds'][0]['rare'],
-        "Rex": json['breeds'][0]['rex'],
-        "Suppressed tail": json['breeds'][0]['suppressed_tail'],
-        "Short legs": json['breeds'][0]['short_legs'],
-        "Hypoallergenic": json['breeds'][0]['hypoallergenic'],
+        "Intelligence": json['breeds'][0]['intelligence'],
+      },
+      activityAndCareAttributes: {
+        "Energy level": json['breeds'][0]['energy_level'],
+        "Adaptability": json['breeds'][0]['adaptability'],
+        "Grooming": json['breeds'][0]['grooming'],
+        "Shedding level": json['breeds'][0]['shedding_level'],
+        "Health issues": json['breeds'][0]['health_issues'],
+      },
+      rarityAttributes: {
+        "Experimental/Established": json['breeds'][0]['experimental'],
+        "Natural/Selective": json['breeds'][0]['natural'],
+        "Rare/Common": json['breeds'][0]['rare'],
+      },
+      physicalAttributes: {
+        "Hairless/Furry": json['breeds'][0]['hairless'],
+        "Short legs/Long legs": json['breeds'][0]['short_legs'],
+        "Rex/Straight coat": json['breeds'][0]['rex'],
+        "Suppressed/Full tail": json['breeds'][0]['suppressed_tail'],
+        "Hypoallergenic/Allergenic": json['breeds'][0]['hypoallergenic'],
       },
     );
   }
