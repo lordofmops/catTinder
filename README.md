@@ -29,8 +29,8 @@
 
 ## Интерфейс приложения
 
-
-https://github.com/user-attachments/assets/272ed3a7-0989-4687-aa82-9cb40ae2247f
+![Главный экран](https://github.com/user-attachments/assets/33013ced-452e-47d3-a1a6-07180fd57937)
+![Экран избранного](https://github.com/user-attachments/assets/b4fe4b67-5b44-4d87-b7fd-ca1449f92eca)
 
 
 
