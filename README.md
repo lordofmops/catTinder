@@ -14,6 +14,7 @@
 - Отображается полное изображение котика.
 - Выводится вся информация о породе.
 - Характеристики породы представлены в наглядных диаграммах.
+<<<<<<< HEAD
 - Есть кликабельные ссылки на внешние источники (Vetstreet, VCAHospitals).
 
 ## Интерфейс приложения
@@ -41,3 +42,6 @@ https://github.com/user-attachments/assets/272ed3a7-0989-4687-aa82-9cb40ae2247f
 - Код отформатирован с помощью dart format.
 - Используется flutter_lints в pubspec.yaml и analysis_options.yaml.
 - Команда flutter analyze выполняется без ошибок.
+=======
+- Есть кликабельные ссылки на внешние источники (Vetstreet, VCAHospitals).
+>>>>>>> dcdc292 (feat: third task done)

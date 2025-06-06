@@ -14,6 +14,7 @@ class Cat {
   final String? vcahospitalsUrl;
   final String? wikiUrl;
   final String? cfaUrl;
+  final bool isLiked;
 
   Cat({
     required this.imageUrl,
@@ -31,6 +32,7 @@ class Cat {
     required this.vcahospitalsUrl,
     required this.wikiUrl,
     required this.cfaUrl,
+    this.isLiked = false,
   });
 
   factory Cat.fromJson(Map<String, dynamic> json) {
@@ -74,6 +76,44 @@ class Cat {
         "Suppressed/Full tail": json['breeds'][0]['suppressed_tail'],
         "Hypoallergenic/Allergenic": json['breeds'][0]['hypoallergenic'],
       },
+    );
+  }
+
+  Cat copyWith({
+    String? imageUrl,
+    String? breed,
+    String? weight,
+    String? lifeSpan,
+    String? origin,
+    String? temperament,
+    String? description,
+    Map<String, int>? socialAttributes,
+    Map<String, int>? activityAndCareAttributes,
+    Map<String, int>? physicalAttributes,
+    Map<String, int>? rarityAttributes,
+    String? vetstreetUrl,
+    String? vcahospitalsUrl,
+    String? wikiUrl,
+    String? cfaUrl,
+    bool? isLiked,
+  }) {
+    return Cat(
+      imageUrl: imageUrl ?? this.imageUrl,
+      breed: breed ?? this.breed,
+      weight: weight ?? this.weight,
+      lifeSpan: lifeSpan ?? this.lifeSpan,
+      origin: origin ?? this.origin,
+      temperament: temperament ?? this.temperament,
+      description: description ?? this.description,
+      socialAttributes: socialAttributes ?? this.socialAttributes,
+      activityAndCareAttributes: activityAndCareAttributes ?? this.activityAndCareAttributes,
+      physicalAttributes: physicalAttributes ?? this.physicalAttributes,
+      rarityAttributes: rarityAttributes ?? this.rarityAttributes,
+      vetstreetUrl: vetstreetUrl ?? this.vetstreetUrl,
+      vcahospitalsUrl: vcahospitalsUrl ?? this.vcahospitalsUrl,
+      wikiUrl: wikiUrl ?? this.wikiUrl,
+      cfaUrl: cfaUrl ?? this.cfaUrl,
+      isLiked: isLiked ?? this.isLiked,
     );
   }
 }
